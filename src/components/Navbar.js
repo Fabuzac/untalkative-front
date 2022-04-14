@@ -12,40 +12,33 @@ class Navbar extends React.Component {
 		return (
 			<>
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-				<div class="container-fluid">
-					<Link class="navbar-brand" to="/">Navbar</Link>
-					<button clLinkss="navbar-toggler" 
-									type="button" 
-									data-bs-toggle="collapse" 
-									data-bs-target="#navbarColor01" 
-									aria-controls="navbarColor01" 
-									aria-expanded="false" 
-									aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarColor01">
-						<ul class="navbar-nav me-auto">
-							<li class="nav-item">
-								<a class="nav-link active" href="#">Home
-									<span class="visually-hidden">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Features</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Pricing</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">About</a>
-							</li>							
-						</ul>
-						<form class="d-flex">
-							<input class="form-control me-sm-2" type="text" placeholder="Search"></input>
-							<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-						</form>
+					<div class="container-fluid">
+						<Link class="navbar-brand" to="/">Navbar</Link>						
+						<div class="collapse navbar-collapse" id="navbarColor01">
+							<ul class="navbar-nav me-auto">
+								<li class="nav-item">
+									<a class="nav-link active" href="#">Home
+										<span class="visually-hidden">(current)</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<Link class="nav-link" to="/about">About</Link>
+								</li>
+								<li class="nav-item">
+									<Link class="nav-link" to="#">Taratata</Link>
+								</li>													
+							</ul>
+							<ul class="navbar-nav ml-auto">
+								
+								<li class="nav-item">
+									<Link class="nav-link" to="/login">Login</Link>
+								</li>
+								<li class="nav-item">
+									<Link class="nav-link" to="/register">Registration</Link>
+								</li>													
+							</ul>
+						</div>
 					</div>
-				</div>
 				</nav>
 			</>
 		)
