@@ -11,30 +11,30 @@ class Navbar extends React.Component {
 	render() {
 		return (
 			<>
-				<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-					<div class="container-fluid">
-						<Link class="navbar-brand" to="/">Navbar</Link>						
-						<div class="collapse navbar-collapse" id="navbarColor01">
-							<ul class="navbar-nav me-auto">
-								<li class="nav-item">
-									<a class="nav-link active" href="#">Home
-										<span class="visually-hidden">(current)</span>
-									</a>
+				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+					<div className="container-fluid">
+						<Link className="navbar-brand" to="/">Navbar</Link>						
+						<div className="collapse navbar-collapse" id="navbarColor01">
+							<ul className="navbar-nav me-auto">
+								<li className="nav-item">
+									<Link className="nav-link active" to="#">Home
+										<span className="visually-hidden">(current)</span>
+									</Link>
 								</li>
-								<li class="nav-item">
-									<Link class="nav-link" to="/about">About</Link>
+								<li className="nav-item">
+									<Link className="nav-link" to="/about">About</Link>
 								</li>
-								<li class="nav-item">
-									<Link class="nav-link" to="#">Taratata</Link>
+								<li className="nav-item">
+									<Link className="nav-link" to="#">Taratata</Link>
 								</li>													
 							</ul>
-							<ul class="navbar-nav ml-auto">
+							<ul className="navbar-nav ml-auto">
 								
-								<li class="nav-item">
-									<Link class="nav-link" to="/login">Login</Link>
+								<li className="nav-item">
+									<Link className="nav-link" to="/login">Login</Link>
 								</li>
-								<li class="nav-item">
-									<Link class="nav-link" to="/register">Registration</Link>
+								<li className="nav-item">
+									<Link className="nav-link" to="/register">Registration</Link>
 								</li>													
 							</ul>
 						</div>

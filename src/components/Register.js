@@ -2,9 +2,8 @@ import React from 'react';
 import Navbar from './Navbar';
 import bcrypt from 'bcryptjs'
 
-// const salt = bcrypt.genSaltSync(10)
-// const password = passwordInputRef.current.value
-// const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
+const salt = bcrypt.genSaltSync(10)
+
 
 class Register extends React.Component {
 	constructor() {
@@ -28,16 +27,15 @@ class Register extends React.Component {
 		})
 	}
 	handlePasswordChange = event => {
-		this.setState({ password: event.target.value }, () => {
-			console.log(this.state)
-		})
+		const hashedPassword = bcrypt.hashSync(this.state.password, salt)
+		this.setState({ password: hashedPassword})
+		console.log(this.state)		
 	}
 	handleConfirmPasswordChange = event => {
-		this.setState({ confirm_password: event.target.value }, () => {
-			console.log(this.state)
-		})
+		const hashedPassword = bcrypt.hashSync(this.state.confirm_password, salt)
+		this.setState({ confirm_password: hashedPassword})
+		console.log(this.state)
 	}
-
 	handleSubmit = event => {
 		event.preventDefault()
 		console.log('inscription')
@@ -50,42 +48,42 @@ class Register extends React.Component {
 				<div className='container w-50'>
 					<h2 className='text-center my-5'>Registration</h2>				
 					<form method='POST' onSubmit={this.handleSubmit}>
-						<div class="form-group">
-							<label for="exampleInputEmail1" class="form-label mt-4">Name</label>
+						<div className="form-group">
+							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Name</label>
 							<input onChange={this.handleNameChange} 
 										 type="text" 
-										 class="form-control" 
+										 className="form-control" 
 										 aria-describedby="emailHelp" 
 										 placeholder="Name">
 							</input>
 						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+						<div className="form-group">
+							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
 							<input onChange={this.handleEmailChange} 
 										 type="email" 
-										 class="form-control" 
+										 className="form-control" 
 										 id="exampleInputEmail1" 
 										 aria-describedby="emailHelp" 
 										 placeholder="Enter email">
 							</input>
 							<small id="emailHelp" 
-										 class="form-text text-muted">We'll never share your email with anyone else.
+										 className="form-text text-muted">We'll never share your email with anyone else.
 							</small>
 						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+						<div className="form-group">
+							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
 							<input onChange={this.handlePasswordChange} 
 										 type="password" 
-										 class="form-control" 
+										 className="form-control" 
 										 id="exampleInputPassword1" 
-										 placeholder="Password">
+										 placeholder="Password">										 
 							</input>
 						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1" class="form-label mt-4">Password confirmation</label>
+						<div className="form-group">
+							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password confirmation</label> 
 							<input onChange={this.handleConfirmPasswordChange} 
 										 type="password" 
-										 class="form-control" 
+										 className="form-control" 
 										 id="exampleInputPassword1" 
 										 placeholder="Password confirmation">
 							</input>
