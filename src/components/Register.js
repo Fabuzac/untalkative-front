@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import bcrypt from 'bcryptjs'
+import axios from 'axios';
 
 const salt = bcrypt.genSaltSync(10)
 
@@ -39,6 +40,18 @@ class Register extends React.Component {
 	handleSubmit = event => {
 		event.preventDefault()
 		console.log('inscription')
+
+		axios({
+			method: 'get',
+			url: '127.0.0.1:8000/api/register',
+			responseType: 'stream'
+		})	
+		.then(function (response) {
+			console.log(response)
+		})
+		.catch(function (error) {
+			console.log(error.response)
+		});
 	}
 
 	render() {
