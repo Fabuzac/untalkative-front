@@ -5,4 +5,4 @@
 </p>
 <p align="center">Front template made with Bootswatch 'morph' theme</p>
 
-<p>(indentation problem in visual code)</p>
+<p align="center">(indentation problem in visual code)</p>
