@@ -19,12 +19,12 @@ class Register extends React.Component {
 
 	handleNameChange = event => {
 		this.setState({ name: event.target.value }, () => {
-			console.log(this.state)
+			
 		})
 	}
 	handleEmailChange = event => {
 		this.setState({ email: event.target.value }, () => {
-			console.log(this.state)
+			
 		})
 	}
 	handlePasswordChange = event => {
@@ -41,17 +41,7 @@ class Register extends React.Component {
 		event.preventDefault()
 		console.log('inscription')
 
-		axios({
-			method: 'get',
-			url: '127.0.0.1:8000/api/register',
-			responseType: 'stream'
-		})	
-		.then(function (response) {
-			console.log(response)
-		})
-		.catch(function (error) {
-			console.log(error.response)
-		});
+		axios.post('http://127.0.0.1:8000/api/register')			 
 	}
 
 	render() {
