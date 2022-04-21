@@ -1,34 +1,48 @@
 import React from 'react';
 import Navbar from './Navbar';
-import bcrypt from 'bcryptjs'
-
-const salt = bcrypt.genSaltSync(10)
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
 	constructor() {
 		super()
+
 		this.state = {			
 			email: '',
-			password: '',			
+			password: '',
+			redirect: false,
 		}
 	}
 
 	handleEmailChange = event => {
-		this.setState({ email: event.target.value }, () => {
-			console.log(this.state)
-		})
+		this.setState({ email: event.target.value }, () => { })
 	}
 	handlePasswordChange = event => {
-		const hashedPassword = bcrypt.hashSync(this.state.password, salt)
-		this.setState({ password: hashedPassword})
-		console.log(this.state)		
+		this.setState({ password: event.target.value }, () => { })	
 	}
+
 	handleSubmit = event => {
 		event.preventDefault()
-		console.log('Login')
+		let bodyFormData = new FormData()
+		
+		bodyFormData.set('email', this.state.email)
+		bodyFormData.set('password', this.state.password)
+		
+		// FETCH API DATA
+		axios.post('http://127.0.0.1:8000/api/login', bodyFormData)
+			.then(response => {
+				localStorage.setItem('token', response.data.api_token)
+				this.setState({ redirect:true })
+			})
+			.catch(error => {
+				console.log(error.response)
+			})
 	}
 
 	render() {
+		if(this.state.redirect) {
+			return (<Redirect to='/'></Redirect>)
+		}
 		return (
 			<>
 				<Navbar/>
@@ -36,7 +50,9 @@ class Login extends React.Component {
 					<h2 className='text-center my-5'>Login Page</h2>				
 					<form method='POST' onSubmit={this.handleSubmit}>						
 						<div className="form-group">
-							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
+							<label htmlFor="exampleInputEmail1" 
+										 className="form-label mt-4">Email address
+							</label>
 							<input onChange={this.handleEmailChange} 
 										 type="email" 
 										 className="form-control" 
@@ -49,7 +65,9 @@ class Login extends React.Component {
 							</small>
 						</div>
 						<div className="form-group">
-							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
+							<label htmlFor="exampleInputPassword1" 
+										 className="form-label mt-4">Password
+							</label>
 							<input onChange={this.handlePasswordChange} 
 										 type="password" 
 										 className="form-control" 
