@@ -13,6 +13,7 @@ class Register extends React.Component {
 			password: '',
 			confirm_password: '',
 			redirect: false,
+			errors: [],
 		}
 	}
 
@@ -44,7 +45,9 @@ class Register extends React.Component {
 				localStorage.setItem('token', response.data.api_token)
 			})
 			.catch(error => {
-				console.log(error.response)
+				if(error.response.status === 401) {
+					this.setState({ errors: error.response.data.errors }, () => { })
+				}
 			})
 	}
 
@@ -58,46 +61,83 @@ class Register extends React.Component {
 				<div className='container w-50'>
 					<h2 className='text-center my-5'>Registration</h2>				
 					<form method='POST' onSubmit={this.handleSubmit}>
+
+						{/* NAME */}
 						<div className="form-group">
-							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Name</label>
+							<label htmlFor="exampleInputEmail1" className="form-label mt-4" >Name</label>
 							<input onChange={this.handleNameChange} 
 										 type="text" 
-										 className="form-control" 
 										 aria-describedby="emailHelp" 
-										 placeholder="Name">
+										 placeholder="Name"
+										 className={ `form-control ${this.state.errors && this.state.errors.name 
+												? "is-invalid" 
+												: '' }` 
+											} >
 							</input>
+							{ this.state.errors && this.state.errors.name 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['name'] }</div> 
+								: '' 
+							}
 						</div>
+
+						{/* EMAIL */}
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
 							<input onChange={this.handleEmailChange} 
-										 type="email" 
-										 className="form-control" 
+										 type="email" 										 
 										 id="exampleInputEmail1" 
 										 aria-describedby="emailHelp" 
-										 placeholder="Enter email">
+										 placeholder="Enter email"
+										 className={ `form-control ${this.state.errors && this.state.errors.email 
+												? "is-invalid" 
+												: '' }` 
+									 		} >
 							</input>
+							{ this.state.errors && this.state.errors.email 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['email'] }</div> 
+								: '' 
+							}
 							<small id="emailHelp" 
 										 className="form-text text-muted">We'll never share your email with anyone else.
 							</small>
 						</div>
+
+						{/* PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
 							<input onChange={this.handlePasswordChange} 
-										 type="password" 
-										 className="form-control" 
+										 type="password" 										 
 										 id="exampleInputPassword1" 
-										 placeholder="Password">										 
+										 placeholder="Password"
+										 className={ `form-control ${this.state.errors && this.state.errors.password 
+												? "is-invalid" 
+												: '' }` 
+									 		} >										 
 							</input>
+							{ this.state.errors && this.state.errors.password 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['password'] }</div> 
+								: '' 
+							}
 						</div>
+
+						{/* CONFIRM PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password confirmation</label> 
 							<input onChange={this.handleConfirmPasswordChange} 
-										 type="password" 
-										 className="form-control" 
+										 type="password" 										 
 										 id="exampleInputPassword1" 
-										 placeholder="Password confirmation">
+										 placeholder="Password confirmation"
+										 className={ `form-control ${this.state.errors && this.state.errors.confirm_password 
+												? "is-invalid" 
+												: '' }` 
+									 		} >
 							</input>
+							{ this.state.errors && this.state.errors.confirm_password 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['confirm_password'] }</div> 
+								: '' 
+							}
 						</div>
+						
 						<button type='submit' className='mt-4 btn btn-primary'>Submit</button>
 					</form>
 				</div>

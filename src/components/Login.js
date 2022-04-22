@@ -11,6 +11,7 @@ class Login extends React.Component {
 			email: '',
 			password: '',
 			redirect: false,
+			errors: [],
 		}
 	}
 
@@ -35,7 +36,9 @@ class Login extends React.Component {
 				this.setState({ redirect:true })
 			})
 			.catch(error => {
-				console.log(error.response)
+				if(error.response.status === 401) {
+					this.setState({ errors: error.response.data.errors }, () => { })
+				}
 			})
 	}
 
@@ -48,33 +51,55 @@ class Login extends React.Component {
 				<Navbar/>
 				<div className='container w-50'>
 					<h2 className='text-center my-5'>Login Page</h2>				
-					<form method='POST' onSubmit={this.handleSubmit}>						
+					<form method='POST' onSubmit={this.handleSubmit}>	
+
+						{/* EMAIL */}
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1" 
 										 className="form-label mt-4">Email address
 							</label>
 							<input onChange={this.handleEmailChange} 
-										 type="email" 
-										 className="form-control" 
+										 type="email" 										 
 										 id="exampleInputEmail1" 
 										 aria-describedby="emailHelp" 
-										 placeholder="Enter email">
+										 placeholder="Enter email"
+										 className={ `form-control ${this.state.errors && this.state.errors.email 
+												? "is-invalid" 
+												: '' }` 
+									 		} >
 							</input>
 							<small id="emailHelp" 
-										 className="form-text text-muted">We'll never share your email with anyone else.
+										 className="form-text text-muted">
 							</small>
+							{ this.state.errors && this.state.errors.email 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['email'] }</div> 
+								: '' 
+							}
 						</div>
+
+						{/* PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" 
 										 className="form-label mt-4">Password
 							</label>
 							<input onChange={this.handlePasswordChange} 
-										 type="password" 
-										 className="form-control" 
+										 type="password" 										 
 										 id="exampleInputPassword1" 
-										 placeholder="Password">										 
+										 placeholder="Password"
+										 className={ `form-control ${this.state.errors && this.state.errors.password 
+												? "is-invalid" 
+												: '' }` 
+									 		} >										 
 							</input>
-						</div>						
+							{ this.state.errors && this.state.errors.password 
+								? <div className='text-danger invalide-feedback'>{ this.state.errors['password'] }</div> 
+								: '' 
+							}
+						</div>
+						{ this.state.errors && this.state.errors == 'Wrong login ID' 
+							? <div className='mt-3 alert alert-danger text-light'>Wrong login ID</div> 
+							: '' 
+						}
 						<button type='submit' className='mt-4 btn btn-primary'>Submit</button>
 					</form>
 				</div>
