@@ -1,41 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Navbar extends React.Component {
 
 	constructor() {
 		super();
-		this.state = {};
+
+		this.state = {
+			token: null,
+		};		
+	}
+
+	logout = () => {
+		localStorage.setItem('token', '')
+		localStorage.clear()
+		this.setState({ token: null })
 	}
 
 	render() {
 		return (
 			<>
-				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-					<div className="container-fluid">
-						<Link className="navbar-brand" to="/">Navbar</Link>						
+				<nav className="navbar navbar-expand-lg navbar-light bg-secondary">
+					<div className="container-fluid nav-tabs">
+						<Link className="navbar-brand h1" to="/">Website name</Link>			
 						<div className="collapse navbar-collapse" id="navbarColor01">
-							<ul className="navbar-nav me-auto">
+							{/* NAVBAR LEFT */}
+							<ul className="nav nav-tabs navbar-nav me-auto">
 								<li className="nav-item">
-									<Link className="nav-link active" to="#">Home
-										<span className="visually-hidden">(current)</span>
+									<Link className="nav-link active" to="/">Home
 									</Link>
 								</li>
-								<li className="nav-item">
-									<Link className="nav-link" to="/about">About</Link>
-								</li>
-								<li className="nav-item">
-									<Link className="nav-link" to="#">Taratata</Link>
-								</li>													
 							</ul>
-							<ul className="navbar-nav ml-auto">
-								
-								<li className="nav-item">
-									<Link className="nav-link" to="/login">Login</Link>
-								</li>
-								<li className="nav-item">
-									<Link className="nav-link" to="/register">Registration</Link>
-								</li>													
+							{/* NAVBAR RIGHT */}
+							<ul className="navbar-nav nav-tabs ml-auto">								
+								{
+									// IF LOGIN
+									localStorage.getItem('token')
+									// THEN
+									?
+										<>
+											<li className="nav-item">
+												<Link className="nav-link" to="/pictures/new">Post picture</Link>
+											</li>
+											<li className="nav-item">
+												<Link className="nav-link" to="/" onClick={() => this.logout()}>Logout</Link>												
+											</li>											
+										</>										
+									// ELSE	
+									:
+										<>
+											<li className="nav-item">
+												<Link className="nav-link nav-link" to="/login">Login</Link>
+											</li>
+											<li className="nav-item">
+												<Link className="nav-link nav-link" to="/register">Registration</Link>
+											</li>	
+										</>							
+								}																				
 							</ul>
 						</div>
 					</div>

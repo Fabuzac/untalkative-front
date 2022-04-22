@@ -15,6 +15,12 @@ class Login extends React.Component {
 		}
 	}
 
+	UNSAFE_componentWillMount() {
+		if(localStorage.getItem('token')) {			
+			this.setState({ redirect:true })
+		}
+	}
+
 	handleEmailChange = event => {
 		this.setState({ email: event.target.value }, () => { })
 	}

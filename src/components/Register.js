@@ -17,6 +17,12 @@ class Register extends React.Component {
 		}
 	}
 
+	UNSAFE_componentWillMount() {
+		if(localStorage.getItem('token')) {
+			this.setState({ redirect:true })
+		}
+	}
+
 	handleNameChange = event => {
 		this.setState({ name: event.target.value }, () => { })
 	}
@@ -59,7 +65,7 @@ class Register extends React.Component {
 			<>
 				<Navbar/>
 				<div className='container w-50'>
-					<h2 className='text-center my-5'>Registration</h2>				
+					<h2 className='text-center my-2'>Registration</h2>				
 					<form method='POST' onSubmit={this.handleSubmit}>
 
 						{/* NAME */}
