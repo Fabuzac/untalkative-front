@@ -14,7 +14,7 @@ class Home extends React.Component {
 			<>		
 				<Navbar/>
 				<div className='card p-4'>
-					<img width={100} src='/favicon.ico' className='m-auto'></img>
+					<img width={100} src='/favicon.ico' alt='logo' className='m-auto'></img>
 				</div>
 				
 				<div className='m-auto row'>
