@@ -23,15 +23,17 @@ class Navbar extends React.Component {
 			<>
 				<nav className="navbar navbar-expand-lg navbar-light bg-secondary">
 					<div className="container-fluid nav-tabs">
-						<Link className="navbar-brand h1" to="/">Website name</Link>			
-						<div className="collapse navbar-collapse" id="navbarColor01">
+						<Link className="navbar-brand h1 w-25" to="/">
+							<img className='w-7 rounded-circle' src='/goo.png' alt='logo'></img>Website name
+						</Link>			
+						<div className="navbar-nav">
 							{/* NAVBAR LEFT */}
-							<ul className="nav nav-tabs navbar-nav me-auto">
-								<li className="nav-item">
-									<Link className="nav-link active" to="/">Home</Link>									
+							<ul className="navbar-nav">
+								<li>
+									<Link className="active" to="/">Home</Link>									
 								</li>
-								<li className='nav-item'>
-									<Link className="nav-link active" to="/backadmin">Admin</Link>
+								<li>
+									<Link className="active" to="/backadmin">Admin</Link>
 								</li>
 							</ul>
 							{/* NAVBAR RIGHT */}
@@ -42,21 +44,21 @@ class Navbar extends React.Component {
 									// THEN
 									?
 										<>
-											<li className="nav-item">
-												<Link className="nav-link" to="/pictures/new">Post picture</Link>
+											<li>
+												<Link to="/pictures/new">Post picture</Link>
 											</li>
-											<li className="nav-item">
-												<Link className="nav-link" to="/" onClick={() => this.logout()}>Logout</Link>												
+											<li>
+												<Link to="/" onClick={() => this.logout()}>Logout</Link>												
 											</li>											
 										</>										
 									// ELSE	
 									:
 										<>
-											<li className="nav-item">
-												<Link className="nav-link nav-link" to="/login">Login</Link>
+											<li className="">
+												<Link className="" to="/login">Login</Link>
 											</li>
-											<li className="nav-item">
-												<Link className="nav-link nav-link" to="/register">Registration</Link>
+											<li className="">
+												<Link className="" to="/register">Registration</Link>
 											</li>	
 										</>							
 								}																				

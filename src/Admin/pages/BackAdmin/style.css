@@ -52,6 +52,11 @@ a {
     width: 7%;
 }
 
+.w-30 {
+    width: 30%;
+}
+
 .margin-card {
     margin: 0, 1%, 1%, 0;
 }
+

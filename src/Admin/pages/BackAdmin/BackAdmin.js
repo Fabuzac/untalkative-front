@@ -10,7 +10,7 @@ class BackAdmin extends React.Component {
         {/* ADMIN-NAVBAR */}
         <nav className='row m-0'>
           <div className="col-1 w-13">
-            <img alt='logo' src='/favicon.ico' className='w-25 m-1 p-1'></img>
+          <img className='w-25 rounded-circle' src='/goo.png' alt='logo'></img>Website Name
           </div>
           <div className='col row m-0'>
             <div className="col-2 pt-3">
@@ -61,7 +61,7 @@ class BackAdmin extends React.Component {
               </div>
 
               {/* MODULE ONE */}
-              <div className='row'>
+              <div className='row mt-4'>
                 <div className="col-md-4 bg-warning card">
                   <div className="card-header">Header</div>
                   <div className="card-body">
@@ -86,7 +86,7 @@ class BackAdmin extends React.Component {
               </div>
 
               {/* MODULE TWO */}
-              <div className='row'>
+              <div className='row mt-4'>
                 <div className="col-md-4 bg-link card">
                   <div className="card-header">Header</div>
                   <div className="card-body">
@@ -109,32 +109,7 @@ class BackAdmin extends React.Component {
                   </div>
                 </div>
               </div>
-
-              {/* MODULE TWO */}
-              <div className='row'>
-                <div className="col-md-4 bg-primary card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Primary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-success card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Success card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-link card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Secondary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-              </div>             
-
+              
             </div>
           </div>
         </div>

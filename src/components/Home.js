@@ -13,10 +13,6 @@ class Home extends React.Component {
 		return (
 			<>		
 				<Navbar/>
-				<div className='card p-4'>
-					<img width={100} src='/favicon.ico' alt='logo' className='m-auto'></img>
-				</div>
-				
 				<div className='m-auto row'>
 					{/* ARTICLE 1 */}
 					<div className="card border-primary mb-3 w-25 m-3 col-sm h-25">
