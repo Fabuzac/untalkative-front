@@ -1,5 +1,5 @@
 import './App.css';
-import "bootswatch/dist/lux/bootstrap.min.css";
+import "bootswatch/dist/materia/bootstrap.min.css";
 import AppRouter from "./components/AppRouter";
 import { BrowserRouter as Router } from 'react-router-dom';
 

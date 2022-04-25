@@ -1,7 +1,57 @@
-.w-13 {
-    width: 13%;
+ul {
+    margin: 0;
+    padding: 0;
 }
 
-.text-decoration-none > * {
+li {
+    padding: 1%;
+}
+
+a {
     text-decoration: none;
+    color: #444;
+}
+
+.bg-gray {
+    background-color: rgb(219, 219, 219);
+}
+
+.content-wrapper {
+    background: #f2edf3;
+    padding: 2.75rem 2.25rem;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.bg-gradient-red {
+    background-color: rgb(75, 1, 1);
+}
+
+.bg-gradient-blue {
+    background-color: rgb(3, 54, 112);
+}
+
+.bg-gradient-green {
+    background-color: rgb(72, 107, 72);
+}
+
+.w-13 {
+    width: 16%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.text-decoration-none > ul > li > *,
+.text-decoration-none > ul {
+    list-style-type: none;
+}
+
+.w-7 {
+    width: 7%;
+}
+
+.margin-card {
+    margin: 0, 1%, 1%, 0;
 }
