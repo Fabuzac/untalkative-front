@@ -31,10 +31,16 @@ class PostPicture extends React.Component {
 		bodyFormData.set('description', this.state.description)
 		bodyFormData.set('image', this.state.image)
 
+		let headers = {
+			headers: {
+				'API-TOKEN': localStorage.getItem('token')
+			}
+		}
+
 		// FETCH API DATA
-		axios.post('http://127.0.0.1:8000/api/pictures', bodyFormData)
+		axios.post('http://127.0.0.1:8000/api/pictures', bodyFormData, headers)
 			.then(response => {
-				this.setState({ redirect: true })
+				this.setState({ redirect: true })				
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
