@@ -22,16 +22,16 @@ class Login extends React.Component {
 	}
 
 	handleEmailChange = event => {
-		this.setState({ email: event.target.value }, () => { })
+		this.setState({ email: event.target.value }, () => { } )
 	}
 	handlePasswordChange = event => {
-		this.setState({ password: event.target.value }, () => { })	
+		this.setState({ password: event.target.value }, () => { } )	
 	}
 
 	handleSubmit = event => {
 		event.preventDefault()
-		let bodyFormData = new FormData()
 		
+		let bodyFormData = new FormData()
 		bodyFormData.set('email', this.state.email)
 		bodyFormData.set('password', this.state.password)
 		
@@ -43,14 +43,14 @@ class Login extends React.Component {
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
-					this.setState({ errors: error.response.data.errors }, () => { })
+					this.setState({ errors: error.response.data.errors }, () => { console.log(this.state) } )
 				}
 			})
 	}
 
 	render() {
 		if(this.state.redirect) {
-			return (<Redirect to='/'></Redirect>)
+			return (<Redirect to='/' />)
 		}
 		return (
 			<>

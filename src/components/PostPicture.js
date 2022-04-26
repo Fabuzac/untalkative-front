@@ -1,5 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class PostPicture extends React.Component {
 	constructor() {
@@ -8,6 +10,7 @@ class PostPicture extends React.Component {
 			title: '',
 			description: '',
 			image: '',
+			redirect: false
 		}
 	}
 
@@ -22,10 +25,28 @@ class PostPicture extends React.Component {
 	}
 	handleSubmit = event => {
 		event.preventDefault()
-		console.log('post picture')		
+		
+		let bodyFormData = new FormData()
+		bodyFormData.set('title', this.state.title)
+		bodyFormData.set('description', this.state.description)
+		bodyFormData.set('image', this.state.image)
+
+		// FETCH API DATA
+		axios.post('http://127.0.0.1:8000/api/pictures', bodyFormData)
+			.then(response => {
+				this.setState({ redirect: true })
+			})
+			.catch(error => {
+				if(error.response.status === 401) {
+					this.setState({ errors: error.response.data.errors }, () => { console.log(this.state) })
+				}
+			})
 	}
 
 	render() {
+		if(this.state.redirect) {
+			return (<Redirect to='/' />)
+		}
 		return (
 			<>
 				<Navbar/>
