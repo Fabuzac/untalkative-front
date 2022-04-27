@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 
 class Login extends React.Component {
 	constructor() {
@@ -43,7 +44,9 @@ class Login extends React.Component {
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
-					this.setState({ errors: error.response.data.errors }, () => { console.log(this.state) } )
+					this.setState({ errors: error.response.data.errors }, () => {
+						console.log(this.state) 
+					})
 				}
 			})
 	}
@@ -108,6 +111,11 @@ class Login extends React.Component {
 						}
 						<button type='submit' className='mt-4 btn btn-primary'>Submit</button>
 					</form>
+				</div>
+				<div className="d-flex justify-content-center mt-5">
+					<a href="http://127.0.0.1:8000/auth/redirect/google">
+						<GoogleLoginButton style={{ maxWidth: 400, minWidth: 300}}/>
+					</a>
 				</div>
 			</>
 		)

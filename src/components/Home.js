@@ -57,9 +57,14 @@ class Home extends React.Component {
 				<Navbar/>
 				<div className='m-auto row container justify-content-center'>
 					{/* SEARCH BAR */}
-					<div class="d-flex justify-content-center mb-5">
-							<form class="form-inline my-2 my-lg-0" method="POST" onSubmit={this.handleSubmit}>
-									<input class="form-control mr-sm-2" name="search" onChange={this.handleSearchChange} type="search" placeholder="Search a picture here..."/>
+					<div className="d-flex justify-content-center mb-5">
+							<form className="form-inline my-2 my-lg-0" method="POST" onSubmit={this.handleSubmit}>
+									<input className="form-control mr-sm-2" 
+												 name="search" 
+											   onChange={this.handleSearchChange} 
+											 	 type="search" 
+												 placeholder="Search a picture here...">													
+									</input>
 							</form>
 					</div>
 					<div className='col-sm-9 row justify-content-between'>

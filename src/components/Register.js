@@ -49,6 +49,7 @@ class Register extends React.Component {
 		axios.post('http://127.0.0.1:8000/api/register', bodyFormData)
 			.then(response => {
 				localStorage.setItem('token', response.data.api_token)
+				this.setState({ redirect: true })
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
@@ -59,7 +60,7 @@ class Register extends React.Component {
 
 	render() {
 		if(this.state.redirect) {
-			return (<Redirect to='/'></Redirect>)
+			return (<Redirect to='/' />)
 		}
 		return (
 			<>
