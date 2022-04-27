@@ -9,12 +9,13 @@ class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			pictures: []
+			pictures: [],
+			search: ''
 		};
 	}
 
 	componentDidMount() {
-		axios.get('http://127.0.0.1:8000/api/pictures')
+		axios.post('http://127.0.0.1:8000/api/pictures')
 		.then(response => {
 			this.setState({ pictures: response.data })
 		})
@@ -23,11 +24,44 @@ class Home extends React.Component {
 		})
 	}
 
+	handleSearchChange = event => {
+		this.setState({ search: event.target.value }, () => { 
+			// this.getArticles() dynamic search
+			if(this.state.search === '') {
+				this.getArticles()
+			}
+		 })
+	}
+	handleSubmit = event => {
+		event.preventDefault()
+		this.getArticles()
+	}
+
+	getArticles() {
+		let bodyFormData = new FormData()
+		bodyFormData.set('search', this.state.search)
+
+		axios.post('http://127.0.0.1:8000/api/pictures', bodyFormData)
+		.then(response => {
+			this.setState({ pictures: response.data })
+		})
+		.catch(error => {
+			console.log(error.response)
+		})
+	}
+	
+
 	render() {
 		return (
 			<>		
 				<Navbar/>
 				<div className='m-auto row container justify-content-center'>
+					{/* SEARCH BAR */}
+					<div class="d-flex justify-content-center mb-5">
+							<form class="form-inline my-2 my-lg-0" method="POST" onSubmit={this.handleSubmit}>
+									<input class="form-control mr-sm-2" name="search" onChange={this.handleSearchChange} type="search" placeholder="Search a picture here..."/>
+							</form>
+					</div>
 					<div className='col-sm-9 row justify-content-between'>
 					{/* ARTICLES */}
 						{

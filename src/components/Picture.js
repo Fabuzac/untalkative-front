@@ -3,13 +3,16 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import AppLoader from './AppLoader';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class Picture extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			redirect: false,
-      picture: {}
+      picture: {},
+      liked: false
 		}
 	}
 
@@ -26,7 +29,9 @@ class Picture extends React.Component {
       // FETCH API DATA
       axios.get(`http://127.0.0.1:8000/api/pictures/${id}`, headers)
         .then(response => {
-          this.setState({ picture: response.data })          
+          this.setState({ picture: response.data }, () => {
+            this.checkLike()
+          })          
         })
         .catch(error => {
           console.log(error.response)
@@ -35,6 +40,39 @@ class Picture extends React.Component {
     } else {
       this.setState({ redirect: true })
     }
+  }
+
+  checkLike() {
+    let headers = {
+      headers : {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+
+    axios.get(`http://127.0.0.1:8000/api/pictures/${this.state.picture.id}/checkLike`, headers)
+      .then(response => {
+        this.setState({ liked : response.data })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+  }
+
+  handleLike() {
+    let headers = {
+      headers : {
+        'API-TOKEN': localStorage.getItem('token')
+      }
+    }
+
+    axios.get(`http://127.0.0.1:8000/api/pictures/${this.state.picture.id}/handleLike`, headers)
+      .then(response => {
+        this.checkLike()
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+
   }
 
   render() {
@@ -59,6 +97,17 @@ class Picture extends React.Component {
                   </div>
                   <div className='author mt-5'>
                     <h5>Author: <span className='badge bg-dark'>{this.state.picture.user.name}</span></h5>  
+                    {
+                      this.state.liked
+                      ?
+                        <>
+                          <FavoriteIcon onClick={ () => this.handleLike()} />Unlike
+                        </>
+                      :
+                        <>
+                          <FavoriteBorderIcon onClick={ () => this.handleLike()} />Like
+                        </>
+                    }
                   </div>
                 </div>
               </div>
