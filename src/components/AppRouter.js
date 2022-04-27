@@ -5,6 +5,7 @@ import Register from './Register';
 import Login from './Login';
 import BackAdmin from '../Admin/pages/BackAdmin/BackAdmin';
 import PostPicture from './PostPicture';
+import Picture from './Picture';
 
 class AppRouter extends React.Component {
 	render() {
@@ -16,6 +17,7 @@ class AppRouter extends React.Component {
 					<Route path='/login' component={Login}/>
 					<Route path='/backadmin' component={BackAdmin}/>
 					<Route path='/pictures/new' component={PostPicture}/>
+					<Route path='/pictures/:id' component={Picture}/>
 				</Switch>
 			</>
 		)

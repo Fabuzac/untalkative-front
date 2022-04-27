@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import '../App.css';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
 	
@@ -42,8 +43,10 @@ class Home extends React.Component {
 										<p className="card-text">{ picture.description }</p>
 										<figcaption className="blockquote-footer mt-1">
 											Someone famous in <cite title="Source Title">Source Title</cite>
-										</figcaption>
-										<a className='btn btn-primary' href='#'>Learn more</a>
+										</figcaption>										
+										<Link className="btn btn-primary"
+												  to={ `/pictures/${ picture.id } ` } >Learn more
+										</Link>
 									</div>
 								</div>
 							)
