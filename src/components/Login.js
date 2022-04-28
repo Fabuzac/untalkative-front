@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 
 class Login extends React.Component {
+	
 	constructor() {
 		super()
 
@@ -17,16 +18,22 @@ class Login extends React.Component {
 	}
 
 	UNSAFE_componentWillMount() {
-		if(localStorage.getItem('token')) {			
+		if(localStorage.getItem('token')) {	
+
 			this.setState({ redirect:true })
 		}
 	}
 
 	handleEmailChange = event => {
-		this.setState({ email: event.target.value }, () => { } )
+		this.setState({ email: event.target.value }, () => { 
+			/*console.log()*/ 
+		})
 	}
+
 	handlePasswordChange = event => {
-		this.setState({ password: event.target.value }, () => { } )	
+		this.setState({ password: event.target.value }, () => { 
+			/*console.log()*/ 
+		})	
 	}
 
 	handleSubmit = event => {
@@ -39,13 +46,15 @@ class Login extends React.Component {
 		// FETCH API DATA
 		axios.post('http://127.0.0.1:8000/api/login', bodyFormData)
 			.then(response => {
+
 				localStorage.setItem('token', response.data.api_token)
 				this.setState({ redirect:true })
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
+
 					this.setState({ errors: error.response.data.errors }, () => {
-						console.log(this.state) 
+						console.log(this.state.errors)
 					})
 				}
 			})
@@ -60,8 +69,7 @@ class Login extends React.Component {
 				<Navbar/>
 				<div className='container w-50'>
 					<h2 className='text-center my-5'>Login Page</h2>				
-					<form method='POST' onSubmit={this.handleSubmit}>	
-
+					<form method='POST' onSubmit={this.handleSubmit}>
 						{/* EMAIL */}
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1" 
@@ -85,7 +93,6 @@ class Login extends React.Component {
 								: '' 
 							}
 						</div>
-
 						{/* PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" 

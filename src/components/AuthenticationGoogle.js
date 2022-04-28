@@ -2,8 +2,10 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 class AuthenticationGoogle extends React.Component {
+  
   constructor(props) {
     super(props)
+    
     this.state = {
       redirect: false
     }

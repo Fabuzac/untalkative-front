@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Navbar extends React.Component {
-
+	
 	constructor() {
 		super();
 
@@ -54,11 +53,11 @@ class Navbar extends React.Component {
 									// ELSE	
 									:
 										<>
-											<li className="">
-												<Link className="" to="/login">Login</Link>
+											<li>
+												<Link to="/login">Login</Link>
 											</li>
-											<li className="">
-												<Link className="" to="/register">Registration</Link>
+											<li>
+												<Link to="/register">Registration</Link>
 											</li>	
 										</>							
 								}																				

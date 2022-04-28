@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 class Register extends React.Component {
+	
 	constructor() {
 		super()
 		
@@ -19,22 +20,34 @@ class Register extends React.Component {
 
 	UNSAFE_componentWillMount() {
 		if(localStorage.getItem('token')) {
+
 			this.setState({ redirect:true })
 		}
 	}
 
 	handleNameChange = event => {
-		this.setState({ name: event.target.value }, () => { })
+		this.setState({ name: event.target.value }, () => { 
+			/*console.log()*/ 
+		})
 	}
+
 	handleEmailChange = event => {
-		this.setState({ email: event.target.value }, () => { })
+		this.setState({ email: event.target.value }, () => { 
+			/*console.log()*/ 
+		})
 	}
+
 	handlePasswordChange = event => {
-		this.setState({ password: event.target.value }, () => { })
+		this.setState({ password: event.target.value }, () => { 
+			/*console.log()*/ 
+		})
 	}
+
 	handleConfirmPasswordChange = event => {
-		this.setState({ confirm_password: event.target.value }, () => { })
-	}
+		this.setState({ confirm_password: event.target.value }, () => { 
+			/*console.log()*/ 
+		})
+	}	
 
 	handleSubmit = event => {
 		event.preventDefault()
@@ -48,12 +61,16 @@ class Register extends React.Component {
 		// FETCH API DATA
 		axios.post('http://127.0.0.1:8000/api/register', bodyFormData)
 			.then(response => {
+
 				localStorage.setItem('token', response.data.api_token)
 				this.setState({ redirect: true })
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
-					this.setState({ errors: error.response.data.errors }, () => { })
+
+					this.setState({ errors: error.response.data.errors }, () => { 
+						console.log(this.state.errors)
+					 })
 				}
 			})
 	}
@@ -68,7 +85,6 @@ class Register extends React.Component {
 				<div className='container w-50'>
 					<h2 className='text-center my-2'>Registration</h2>				
 					<form method='POST' onSubmit={this.handleSubmit}>
-
 						{/* NAME */}
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1" className="form-label mt-4" >Name</label>
@@ -86,7 +102,6 @@ class Register extends React.Component {
 								: '' 
 							}
 						</div>
-
 						{/* EMAIL */}
 						<div className="form-group">
 							<label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
@@ -108,7 +123,6 @@ class Register extends React.Component {
 										 className="form-text text-muted">We'll never share your email with anyone else.
 							</small>
 						</div>
-
 						{/* PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
@@ -126,7 +140,6 @@ class Register extends React.Component {
 								: '' 
 							}
 						</div>
-
 						{/* CONFIRM PASSWORD */}
 						<div className="form-group">
 							<label htmlFor="exampleInputPassword1" className="form-label mt-4">Password confirmation</label> 
@@ -143,8 +156,7 @@ class Register extends React.Component {
 								? <div className='text-danger invalide-feedback'>{ this.state.errors['confirm_password'] }</div> 
 								: '' 
 							}
-						</div>
-						
+						</div>						
 						<button type='submit' className='mt-4 btn btn-primary'>Submit</button>
 					</form>
 				</div>

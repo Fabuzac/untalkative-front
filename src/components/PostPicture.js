@@ -3,9 +3,17 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
+const headers = {
+	headers: {
+		'API-TOKEN': localStorage.getItem('token')
+	}
+}
+
 class PostPicture extends React.Component {
+
 	constructor() {
 		super()
+
 		this.state = {
 			title: '',
 			description: '',
@@ -15,14 +23,23 @@ class PostPicture extends React.Component {
 	}
 
 	handleTitleChange = event => {
-		this.setState({ title: event.target.value }, () => { } )
+		this.setState({ title: event.target.value }, () => { 
+			/*console.log()*/  
+		})
 	}
+
 	handleDescriptionChange = event => {
-		this.setState({ description: event.target.value }, () => { } )	
+		this.setState({ description: event.target.value }, () => { 
+			/*console.log()*/  
+		})	
 	}
+
 	handleImageChange = event => {		
-		this.setState({ image: event.target.files[0] }, () => { } )	
+		this.setState({ image: event.target.files[0] }, () => { 
+			/*console.log()*/  
+		})	
 	}
+
 	handleSubmit = event => {
 		event.preventDefault()
 		
@@ -31,20 +48,18 @@ class PostPicture extends React.Component {
 		bodyFormData.set('description', this.state.description)
 		bodyFormData.set('image', this.state.image)
 
-		let headers = {
-			headers: {
-				'API-TOKEN': localStorage.getItem('token')
-			}
-		}
-
-		// FETCH API DATA
+		// POST PICTURE API
 		axios.post('http://127.0.0.1:8000/api/pictures/store', bodyFormData, headers)
 			.then(response => {
+
 				this.setState({ redirect: true })				
 			})
 			.catch(error => {
 				if(error.response.status === 401) {
-					this.setState({ errors: error.response.data.errors }, () => { console.log(this.state) })
+
+					this.setState({ errors: error.response.data.errors }, () => { 
+						console.log(this.state) 
+					})
 				}
 			})
 	}

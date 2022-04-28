@@ -8,6 +8,7 @@ class Home extends React.Component {
 	
 	constructor() {
 		super();
+
 		this.state = {
 			pictures: [],
 			search: ''
@@ -15,8 +16,10 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
+		
 		axios.post('http://127.0.0.1:8000/api/pictures')
 		.then(response => {
+
 			this.setState({ pictures: response.data })
 		})
 		.catch(error => {
@@ -25,36 +28,43 @@ class Home extends React.Component {
 	}
 
 	handleSearchChange = event => {
+
 		this.setState({ search: event.target.value }, () => { 
-			// this.getArticles() dynamic search
+			// this.getArticles()
+			// FOR DYNAMIC SEARCH
+			// BUT TOO MUCH REQUEST PER MINUTE
+
 			if(this.state.search === '') {
 				this.getArticles()
 			}
 		 })
 	}
+
 	handleSubmit = event => {
+
 		event.preventDefault()
 		this.getArticles()
 	}
 
 	getArticles() {
+
 		let bodyFormData = new FormData()
 		bodyFormData.set('search', this.state.search)
 
 		axios.post('http://127.0.0.1:8000/api/pictures', bodyFormData)
 		.then(response => {
+
 			this.setState({ pictures: response.data })
 		})
 		.catch(error => {
 			console.log(error.response)
 		})
 	}
-	
 
 	render() {
 		return (
 			<>		
-				<Navbar/>
+				<Navbar />
 				<div className='m-auto row container justify-content-center'>
 					{/* SEARCH BAR */}
 					<div className="d-flex justify-content-center mb-5">
@@ -73,9 +83,9 @@ class Home extends React.Component {
 							this.state.pictures.map((picture) => 
 								<div className="card border-primary w-30 my-3 mx-1">									
 									<img className="card-img-top" 
-											alt="Card image"
-											style={{ width: '100%' }} 
-											src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
+											 alt="Card image"
+											 style={{ width: '100%' }} 
+											 src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
 									</img>
 									<div className="card-body">
 										<h4 className="card-title">{ picture.title }</h4>
@@ -91,7 +101,6 @@ class Home extends React.Component {
 							)
 						}	
 					</div>
-
 					{/* LIST */}
 					<div className="col-2 card border-primary my-3 mx-2 mb-3 h-25">
 						<div className="card-header">List</div>
@@ -107,7 +116,6 @@ class Home extends React.Component {
 								Someone famous in <cite title="Source Title">Source Title</cite>
 							</figcaption>
 						</div>
-
 						<div className="card-body">
 							<h4 className="card-title">New Title List</h4>
 							<ul>
@@ -118,8 +126,7 @@ class Home extends React.Component {
 							</ul>
 						</div>
 					</div>		
-				</div>
-						
+				</div>						
 			</>			
 		)
 	};
