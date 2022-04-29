@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import AppLoader from './AppLoader';
