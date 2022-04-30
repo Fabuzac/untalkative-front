@@ -1,8 +1,27 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class BackAdmin extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      pictures: []
+    }
+  }
+
+  componentDidMount() {
+		
+		axios.post('http://127.0.0.1:8000/api/pictures')
+		.then(response => {
+
+			this.setState({ pictures: response.data })
+		})
+		.catch(error => {
+			console.log(error.response)
+		})
+	}
 
   render() {
     return (
@@ -53,65 +72,30 @@ class BackAdmin extends React.Component {
             </ul>
           </div>
 
-          {/* CENTER ROW */}
-          <div className='col bg-gray m-0 content-wrapper container-fluid'>
-            <div>
-              <div className='d-flex'>
-                <p>ico</p><h4>PAGE HEADER</h4>                
-              </div>
-
-              {/* MODULE ONE */}
-              <div className='row mt-4'>
-                <div className="col-md-4 bg-warning card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Primary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-success card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Success card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-link card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Secondary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* MODULE TWO */}
-              <div className='row mt-4'>
-                <div className="col-md-4 bg-link card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Secondary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-primary card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Primary card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-                <div className="col-md-4 bg-success card">
-                  <div className="card-header">Header</div>
-                  <div className="card-body">
-                    <h4 className="card-title">Success card title</h4>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+          <div className='col-sm-9 row justify-content-between container'>
+					{/* ARTICLES */}
+						{
+							this.state.pictures.map((picture) => 
+								<div className="card border-primary w-30 my-3 mx-1">									
+									<img className="card-img-top" 
+											 alt="Card image"
+											 style={{ width: '100%' }} 
+											 src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
+									</img>
+									<div className="card-body">
+										<h4 className="card-title">{ picture.title }</h4>
+										<p className="card-text">{ picture.description }</p>
+										<figcaption className="blockquote-footer mt-1">
+											Someone famous in <cite title="Source Title">Source Title</cite>
+										</figcaption>										
+										<Link className="btn btn-primary"
+												  to={ `/pictures/${ picture.id } ` } >Learn more
+										</Link>
+									</div>
+								</div>
+							)
+						}	
+					</div>
         </div>
       </>
     )
