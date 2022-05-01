@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home/Home';
-import Register from './Register';
-import Login from './Login';
+import Register from './Register/Register';
+import Login from './Login/Login';
 import BackAdmin from '../Admin/pages/BackAdmin/BackAdmin';
-import PostPicture from './PostPicture';
-import Picture from './Picture';
+import PostPicture from './PostPicture/PostPicture';
+import Picture from './Picture/Picture';
 import AuthenticationGoogle from './AuthenticationGoogle/AuthenticationGoogle'
 
 class AppRouter extends React.Component {

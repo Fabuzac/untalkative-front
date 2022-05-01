@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import AppLoader from './AppLoader';
+import AppLoader from '../AppLoader/AppLoader';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
