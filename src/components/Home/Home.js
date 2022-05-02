@@ -4,6 +4,12 @@ import '../../App.css';
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 
+const headers = {
+  headers: {
+    'API-TOKEN': localStorage.getItem('token')
+  }
+}
+
 class Home extends React.Component {
 	
 	constructor() {
@@ -61,6 +67,21 @@ class Home extends React.Component {
 		})
 	}
 
+	deleteArticle = event => {
+		event.preventDefault()
+
+		// FETCH API PICTURE ID
+		
+		axios.delete(`http://127.0.0.1:8000/api/pictures/${this.state.pictures.id}/delete`, headers)
+			.then(response => {
+				console.log('picture deleted')
+				
+			})       
+			.catch(error => {
+				console.log(error.response)
+			})		
+	}
+
 	render() {
 		return (
 			<>		
@@ -96,11 +117,16 @@ class Home extends React.Component {
 										<Link className="btn btn-primary"
 												  to={ `/pictures/${ picture.id } ` } >Learn more
 										</Link>
+										{/* DELETE BUTTON */}
+										<form className="form-inline my-2 my-lg-0" method="delete" onSubmit={this.deleteArticle}>
+											<button type='submit' className="mt-1 btn btn-danger">Delete</button>											
+											<input type='hidden' onChange={this.deleteArticle}  value={picture.id}/>
+										</form>
 									</div>
 								</div>
 							)
 						}	
-					</div>
+					</div>					
 					{/* LIST */}
 					<div className="col-2 card border-primary my-3 mx-2 mb-3 h-25">
 						<div className="card-header">List</div>
