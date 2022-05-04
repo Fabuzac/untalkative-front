@@ -34,5 +34,8 @@ a {
     flex-grow: 1;
 }
 
+.shadow {
+    box-shadow: 2px 2px 1px !important;
+}
 
 

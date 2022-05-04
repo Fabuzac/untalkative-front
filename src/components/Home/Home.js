@@ -25,7 +25,6 @@ class Home extends React.Component {
 		
 		axios.post('http://127.0.0.1:8000/api/pictures')
 		.then(response => {
-
 			this.setState({ pictures: response.data })
 		})
 		.catch(error => {
@@ -43,7 +42,7 @@ class Home extends React.Component {
 			if(this.state.search === '') {
 				this.getArticles()
 			}
-		 })
+		})
 	}
 
 	handleSubmit = event => {
@@ -67,19 +66,16 @@ class Home extends React.Component {
 		})
 	}
 
-	deleteArticle = event => {
-		event.preventDefault()
-
-		// FETCH API PICTURE ID
+	onDeletePicture = (id) => {		
+		axios.delete(`http://127.0.0.1:8000/api/pictures/${id}/delete`, headers)
 		
-		axios.delete(`http://127.0.0.1:8000/api/pictures/${this.state.pictures.id}/delete`, headers)
 			.then(response => {
 				console.log('picture deleted')
-				
-			})       
+				window.location.reload();
+			})
 			.catch(error => {
 				console.log(error.response)
-			})		
+			})		    
 	}
 
 	render() {
@@ -88,7 +84,7 @@ class Home extends React.Component {
 				<Navbar />
 				<div className='m-auto row container justify-content-center'>
 					{/* SEARCH BAR */}
-					<div className="d-flex justify-content-center mb-5">
+					<div className="d-flex justify-content-center mt-5 mb-5">
 							<form className="form-inline my-2 my-lg-0" method="POST" onSubmit={this.handleSubmit}>
 									<input className="form-control mr-sm-2" 
 												 name="search" 
@@ -103,9 +99,9 @@ class Home extends React.Component {
 						{
 							this.state.pictures.map((picture) => 
 								<div className="card border-primary w-30 my-3 mx-1">									
-									<img className="card-img-top" 
+									<img className="card-img-top m-auto pt-1 rounded shadow" 
 											 alt="Card image"
-											 style={{ width: '100%' }} 
+											 style={{ width: '70%' }} 
 											 src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
 									</img>
 									<div className="card-body">
@@ -114,14 +110,14 @@ class Home extends React.Component {
 										<figcaption className="blockquote-footer mt-1">
 											Someone famous in <cite title="Source Title">Source Title</cite>
 										</figcaption>										
-										<Link className="btn btn-primary"
+										<Link className="btn btn-primary p-2"
 												  to={ `/pictures/${ picture.id } ` } >Learn more
 										</Link>
-										{/* DELETE BUTTON */}
-										<form className="form-inline my-2 my-lg-0" method="delete" onSubmit={this.deleteArticle}>
-											<button type='submit' className="mt-1 btn btn-danger">Delete</button>											
-											<input type='hidden' onChange={this.deleteArticle}  value={picture.id}/>
-										</form>
+										{/* DELETE BUTTON */}										
+										<button type='submit' 
+														className="m-1 btn btn-danger p-2"
+														onClick={ () => this.onDeletePicture(picture.id) } >Delete
+										</button>
 									</div>
 								</div>
 							)
@@ -129,7 +125,7 @@ class Home extends React.Component {
 					</div>					
 					{/* LIST */}
 					<div className="col-2 card border-primary my-3 mx-2 mb-3 h-25">
-						<div className="card-header">List</div>
+						<div className="card-header bg-secondary m-0">List</div>
 						<div className="card-body">
 							<h4 className="card-title">Primary card title</h4>
 							<ul>
