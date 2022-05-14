@@ -7,4 +7,6 @@
 
 <p align="center">(indentation problem in visual code)</p>
 
-<img align="center" src="public\002.PNG" width="400">
+<div align="center">
+    <img src="public\002.PNG" width="400">
+</div>
