@@ -48,7 +48,7 @@ class Home extends React.Component {
 	handleSubmit = event => {
 
 		event.preventDefault()
-		this.getArticles()
+		this.getArticles()		
 	}
 
 	getArticles() {
