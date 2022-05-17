@@ -16,12 +16,24 @@ class BackAdmin extends React.Component {
 		axios.post('http://127.0.0.1:8000/api/pictures')
 		.then(response => {
 
+      // this.userLogged()
 			this.setState({ pictures: response.data })
 		})
 		.catch(error => {
 			console.log(error.response)
 		})
 	}
+
+  // userLogged() {
+  //   axios.get('http://127.0.0.1:8000/api/user')
+	// 	.then(response => {
+
+	// 		console.log(response)
+	// 	})
+	// 	.catch(error => {
+	// 		console.log(error.response)
+	// 	})
+  // }
 
   render() {
     return (
@@ -74,21 +86,24 @@ class BackAdmin extends React.Component {
 
           <div className='col-sm-9 row justify-content-between container'>
 					{/* ARTICLES */}
-						{
+          {
 							this.state.pictures.map((picture) => 
-								<div className="card border-primary w-30 my-3 mx-1">									
-									<img className="card-img-top" 
-											 alt="Card image"
-											 style={{ width: '100%' }} 
-											 src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
-									</img>
+								<div className="card border-primary w-30 my-3 mx-1">				
+									<Link className='text-center' to={ `/pictures/${ picture.id } ` } >
+										<img className="card-img-top m-auto pt-1 rounded shadow" 
+											alt="Card image"
+											style={{ width: '70%' }} 
+											src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
+										</img>
+									</Link>					
+									
 									<div className="card-body">
 										<h4 className="card-title">{ picture.title }</h4>
 										<p className="card-text">{ picture.description }</p>
 										<figcaption className="blockquote-footer mt-1">
 											Someone famous in <cite title="Source Title">Source Title</cite>
 										</figcaption>										
-										<Link className="btn btn-primary"
+										<Link className="btn btn-primary p-2"
 												  to={ `/pictures/${ picture.id } ` } >Learn more
 										</Link>
 									</div>

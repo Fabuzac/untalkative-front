@@ -98,12 +98,15 @@ class Home extends React.Component {
 					{/* ARTICLES */}
 						{
 							this.state.pictures.map((picture) => 
-								<div className="card border-primary w-30 my-3 mx-1">									
-									<img className="card-img-top m-auto pt-1 rounded shadow" 
-											 alt="Card image"
-											 style={{ width: '70%' }} 
-											 src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
-									</img>
+								<div className="card border-primary w-30 my-3 mx-1">				
+									<Link className='text-center' to={ `/pictures/${ picture.id } ` } >
+										<img className="card-img-top m-auto pt-1 rounded shadow" 
+											alt="Card image"
+											style={{ width: '70%' }} 
+											src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
+										</img>
+									</Link>					
+									
 									<div className="card-body">
 										<h4 className="card-title">{ picture.title }</h4>
 										<p className="card-text">{ picture.description }</p>
