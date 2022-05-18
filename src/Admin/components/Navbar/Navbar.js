@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './style.css';
 
 class Navbar extends React.Component {
 	
@@ -46,26 +47,30 @@ class Navbar extends React.Component {
 			<>
       {/* ADMIN-NAVBAR */}
         <nav className='row m-0'>
-          <div className="col-1 w-13">
-          <img className='w-25 rounded-circle' src='/goo.png' alt='logo'></img>Blogito
+          <div className="col-1 w-13 aside-bg">
+            <img className='w-25 rounded-circle' src='/goo.png' alt='logo'></img>Blogito
           </div>
-          <div className='col row m-0'>
-            <div className="col-2 pt-3">
-              <p>reduce win</p>
-            </div>
-            <div className='col w-100'>
-              <ul className='nav justify-content-end pt-1'>
-                <li className='justify-content-end d-flex'>
-                  <img className='w-7 rounded-circle' src='/001.jpg' alt='logo'></img>
-                  Welcome { this.state.user.name }
+          <div className='col row m-0 mt-4'>            
+              <div className='col-3 btn btn-primary reduce-btn p-1'>↔️</div>  
+              <ul className='col-11 nav justify-content-end'>                               
+                <li>
+                  <Link to="/">Website</Link>
                 </li>
-                <li><Link className="" to="/">Website</Link></li>
-                <li><Link className="" to="/homeAdmin">HomeAdmin</Link></li>
+                <li>
+                  <Link to="/homeAdmin">HomeAdmin</Link>
+                </li>
                 <li>
                   <Link to="/" onClick={() => this.logout()}>Logout</Link>												
                 </li>				
               </ul>
-            </div>   
+              <div className='card w-50 m-auto p-3'>
+                <div className='text-center'>
+                    <img className='admin-avatar w-7 rounded-circle' src='/001.jpg' alt='logo'></img>
+                    Welcome { this.state.user.name }
+                </div>
+              </div>
+              
+            
           </div>    
         </nav>
 			</>

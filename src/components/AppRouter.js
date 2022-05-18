@@ -6,7 +6,7 @@ import Login from './Login/Login';
 import PostPicture from './PostPicture/PostPicture';
 import Picture from './Picture/Picture';
 import AuthenticationGoogle from './AuthenticationGoogle/AuthenticationGoogle'
-import HomeAdmin from '../Admin/pages/BackAdmin/HomeAdmin';
+import HomeAdmin from '../Admin/pages/HomeAdmin/HomeAdmin';
 import Articles from '../Admin/pages/Articles/Articles';
 
 class AppRouter extends React.Component {

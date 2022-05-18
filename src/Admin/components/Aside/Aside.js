@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './style.css';
 
 class Aside extends React.Component {
 	
@@ -19,7 +20,7 @@ class Aside extends React.Component {
 		return (
 			<>
         {/* ASIDE MENU */}
-        <div className='col-1 w-13 left-panel pt-4 text-decoration-none'>            
+        <div className='col-1 w-13 left-panel pt-4 text-decoration-none aside-bg'>            
           <ul className='text-decoration-none'>
             <li>
               <h5>Articles</h5>
