@@ -66,18 +66,6 @@ class Home extends React.Component {
 		})
 	}
 
-	onDeletePicture = (id) => {		
-		axios.delete(`http://127.0.0.1:8000/api/pictures/${id}/delete`, headers)
-		
-			.then(response => {
-				console.log('picture deleted')
-				window.location.reload();
-			})
-			.catch(error => {
-				console.log(error.response)
-			})		    
-	}
-
 	render() {
 		return (
 			<>		
@@ -98,14 +86,14 @@ class Home extends React.Component {
 					{/* ARTICLES */}
 						{
 							this.state.pictures.map((picture) => 
-								<div className="card border-primary w-30 my-3 mx-1">				
+								<div className="card border-primary w-30 my-3 mx-1" key={picture.id}>				
 									<Link className='text-center' to={ `/pictures/${ picture.id } ` } >
 										<img className="card-img-top m-auto pt-1 rounded shadow" 
 											alt="Card image"
 											style={{ width: '70%' }} 
 											src={ `http://127.0.0.1:8000/storage/pictures/${picture.image}` } >
 										</img>
-									</Link>					
+									</Link>
 									
 									<div className="card-body">
 										<h4 className="card-title">{ picture.title }</h4>
@@ -115,12 +103,7 @@ class Home extends React.Component {
 										</figcaption>										
 										<Link className="btn btn-primary p-2"
 												  to={ `/pictures/${ picture.id } ` } >Learn more
-										</Link>
-										{/* DELETE BUTTON */}										
-										<button type='submit' 
-														className="m-1 btn btn-danger p-2"
-														onClick={ () => this.onDeletePicture(picture.id) } >Delete
-										</button>
+										</Link>										
 									</div>
 								</div>
 							)

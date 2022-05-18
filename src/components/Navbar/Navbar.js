@@ -32,7 +32,7 @@ class Navbar extends React.Component {
 									<Link className="active" to="/">Home</Link>
 								</li>
 								<li>
-									<Link className="active" to="/backadmin">Admin</Link>
+									<Link className="active" to="/homeAdmin">Admin</Link>
 								</li>
 							</ul>
 							{/* NAVBAR RIGHT */}
