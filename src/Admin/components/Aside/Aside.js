@@ -29,17 +29,11 @@ class Aside extends React.Component {
                   <Link to="/articles" >All Articles</Link>
                 </li>                  
               </ul>              
-            </li>
-            <li>
-              <h5>Products</h5>
-              <ul>
-                <li><h6>All products</h6></li>                  
-              </ul>              
-            </li>
+            </li>            
             <li>
               <h5>Users</h5>
               <ul>
-                <li><h6>All users</h6></li>                  
+              <Link to="/users" >All Users</Link>                 
               </ul>              
             </li>
           </ul>

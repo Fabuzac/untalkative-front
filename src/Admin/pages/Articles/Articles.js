@@ -60,7 +60,7 @@ class Articles extends React.Component {
       <Navbar />
         <div className='row m-0'>
           <Aside />
-          <div className='col-sm-9 row justify-content-between container'>
+          <div className='col-sm-9 row justify-content-between container m-auto'>
          
         {/* ARTICLES */}
         {

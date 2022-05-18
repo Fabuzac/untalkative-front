@@ -28,7 +28,7 @@ class Navbar extends React.Component {
 		.then(response => {
 
       this.setState({ user: response.data }, () => {
-        console.log('Welcome ' + this.state.user.name)
+        // console.log('Welcome ' + this.state.user.name)
       })
 		})
 		.catch(error => {
@@ -68,9 +68,7 @@ class Navbar extends React.Component {
                     <img className='admin-avatar w-7 rounded-circle' src='/001.jpg' alt='logo'></img>
                     Welcome { this.state.user.name }
                 </div>
-              </div>
-              
-            
+              </div>            
           </div>    
         </nav>
 			</>
