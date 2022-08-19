@@ -9,6 +9,7 @@ import AuthenticationGoogle from './AuthenticationGoogle/AuthenticationGoogle'
 import HomeAdmin from '../Admin/pages/HomeAdmin/HomeAdmin';
 import Articles from '../Admin/pages/Articles/Articles';
 import Users from '../Admin/pages/Users/Users';
+import Chat from './Chat/Chat';
 
 class AppRouter extends React.Component {
 	render() {
@@ -20,6 +21,7 @@ class AppRouter extends React.Component {
 					<Route exact path='/login' component={Login}/>
 					<Route exact path='/articles' component={Articles}/>
 					<Route exact path='/users' component={Users}/>
+					<Route exact path='/chat' component={Chat}/>
 					<Route path='/homeAdmin' component={HomeAdmin}/>
 					<Route path='/pictures/new' component={PostPicture}/>
 					<Route path='/pictures/:id' component={Picture}/>

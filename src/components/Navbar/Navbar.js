@@ -29,6 +29,9 @@ class Navbar extends React.Component {
 							{/* NAVBAR LEFT */}
 							<ul className="navbar-nav">
 								<li>
+									<Link className="active" to="/chat">Chat</Link>
+								</li>
+								<li>
 									<Link className="active" to="/">Home</Link>
 								</li>
 								<li>
