@@ -48,7 +48,7 @@ class Navbar extends React.Component {
       {/* ADMIN-NAVBAR */}
         <nav className='row m-0'>
           <div className="col-1 w-13 aside-bg">
-            <img className='w-25 rounded-circle' src='/goo.png' alt='logo'></img>Blogito
+            <img className='w-25 rounded-circle' src='/Sho.png' alt='logo'></img>Blogito
           </div>
           <div className='col row m-0 mt-4'>            
               <div className='col-3 btn btn-primary reduce-btn p-1'>↔️</div>  

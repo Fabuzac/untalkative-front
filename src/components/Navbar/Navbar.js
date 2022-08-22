@@ -23,7 +23,7 @@ class Navbar extends React.Component {
 				<nav className="navbar navbar-expand-lg navbar-light bg-secondary">
 					<div className="container-fluid nav-tabs">
 						<Link className="navbar-brand h1 w-25" to="/">
-							<img className='w-7 rounded-circle' src='/goo.png' alt='logo'></img>Blogito
+							<img className='w-7 rounded-circle' src='/Sho.png' alt='logo'></img>Blogito
 						</Link>			
 						<div className="navbar-nav">
 							{/* NAVBAR LEFT */}
