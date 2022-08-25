@@ -1,0 +1,18 @@
+.float-right {
+    float: right;
+}
+
+.size-limited {
+    height: 600px !important;
+}
+
+/* 
+position: fixed;
+bottom: 70px;
+left: 36%; */
+
+.fix-pos {
+    position: fixed;
+    bottom: 70px;
+    left: 36%;
+}
