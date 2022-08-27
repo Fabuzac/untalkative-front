@@ -30,8 +30,8 @@ class Chat extends React.Component {
 		axios.post('http://127.0.0.1:8000/api/chat', bodyFormData, headers)
 		.then( response => {
 
-			console.log("Message sent")
-			console.log(response.data)
+			console.log("Message sent", response.data)
+
 			if(response.request.status === 200) {
 				//reset input value
 			}
@@ -55,10 +55,7 @@ class Chat extends React.Component {
       axios.get(`http://127.0.0.1:8000/api/message`, headers)
         .then(response => {
 					console.log("API OK " + response.status)
-					console.log( response)
 					this.setState({instantMessage: response.data})
-					console.log(this.state.instantMessage)
-
         })        
         .catch(error => {
           console.log(error.response)
